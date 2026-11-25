@@ -10,6 +10,7 @@ file and the scripts assume that name.
 
 1. In the project root, run:
    `git subtree add --prefix=.devbox git@github.com:codeborne/devbox-template.git main --squash`
+   If you reach GitHub through an SSH alias from `~/.ssh/config`, put the alias in place of `git@github.com`.
 2. Set `COMPOSE_PROJECT_NAME` in `.devbox/.env`.
 3. Add the hosts of the project to `.devbox/allowed-domains.conf`.
 4. If you want to connect to a server running inside the devbox, add the port to `.devbox/inbound-ports.conf`.
@@ -38,6 +39,8 @@ All scripts live in `.devbox` and run on the host.
 Run `.devbox/update.sh`. It pulls the template with `git subtree pull --squash`, which merges only
 what changed since the last pull and keeps the project's own edits. If the project and the template
 changed the same lines, git leaves conflict markers. Resolve them and commit.
+
+With an SSH alias: `GITHUB_SSH=github-cb .devbox/update.sh`.
 
 ## Playwright
 
