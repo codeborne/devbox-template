@@ -60,7 +60,7 @@ fetch_json() {
 
 # --- Load the allow-list config (data, kept out of this script) ---
 # Resolve alongside this script so both the baked /usr/local/bin copy and the
-# bind-mounted .devcontainer copy find their sibling config.
+# bind-mounted .devbox copy find their sibling config.
 SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/allowed-domains.conf"
 if [ ! -f "$CONFIG_FILE" ]; then

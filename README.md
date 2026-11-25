@@ -1,26 +1,26 @@
-# Devcontainer template
+# Devbox template
 
-A firewalled devcontainer for Claude Code. The container starts as root, applies an outbound allow-list, and then
+A firewalled devbox for Claude Code. The container starts as root, applies an outbound allow-list, and then
 runs the workload as `node`.
 
 ## Use it in a new project
 
-1. Get the files of this repo into your project root: `curl -L https://github.com/erikjogi-cb/devcontainer-template/archive/HEAD.tar.gz | tar xz --exclude='*/README.md' --exclude='*/.gitignore' --strip-components=1`
-2. Set `COMPOSE_PROJECT_NAME` in `.devcontainer/.env`.
-3. Add the hosts of the project to `.devcontainer/allowed-domains.conf`.
-4. If you want to connect to a server running inside the devconatiner, add the port to `.devcontainer/inbound-ports.conf`.
+1. Get the files of this repo into your project root: `curl -L https://github.com/codeborne/devbox-template/archive/HEAD.tar.gz | tar xz --exclude='*/README.md' --exclude='*/.gitignore' --strip-components=1`
+2. Set `COMPOSE_PROJECT_NAME` in `.devbox/.env`.
+3. Add the hosts of the project to `.devbox/allowed-domains.conf`.
+4. If you want to connect to a server running inside the devbox, add the port to `.devbox/inbound-ports.conf`.
 5. If the project needs a JDK other than 25, change `TEMURIN_VERSION` in the `Dockerfile`.
-6. Run `./devcontainer-restart.sh` on the host.
+6. Run `./devbox-restart.sh` on the host.
 
 ## Scripts
 
 All three scripts run on the host.
 
-- `devcontainer-restart.sh` reads `GH_TOKEN` from 1Password, then rebuilds and
+- `devbox-restart.sh` reads `GH_TOKEN` from 1Password, then rebuilds and
   starts the container. It needs the `op` CLI. Claude Code installs its plugin
   from GitHub with this token.
-- `devcontainer-shell.sh` opens a shell as `node`.
-- `devcontainer-firewall-restart.sh` applies the allow-list again without a
+- `devbox-shell.sh` opens a shell as `node`.
+- `devbox-firewall-restart.sh` applies the allow-list again without a
   rebuild.
 
 ## Playwright

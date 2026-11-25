@@ -125,7 +125,7 @@ EOF
 # repair it later, because the CDN sits behind the firewall. A project without a
 # package-lock.json that pins Playwright gets the newest release. The Dockerfile is copied
 # only so that COPY has one source that always exists.
-COPY --chown=node:node .devcontainer/Dockerfile package*.json /tmp/playwright/
+COPY --chown=node:node .devbox/Dockerfile package*.json /tmp/playwright/
 RUN cd /tmp/playwright \
   && if [ -f package-lock.json ] && grep -q '"node_modules/playwright"' package-lock.json; then \
        npm ci --ignore-scripts && ./node_modules/.bin/playwright install chromium; \
@@ -143,15 +143,15 @@ RUN git config --global url."https://github.com/".insteadOf "git@github.com:"
 
 # Copy and set up firewall script + its allow-list config (kept side by side so
 # init-firewall.sh finds allowed-domains.conf whether run from here or the mount)
-COPY .devcontainer/init-firewall.sh /usr/local/bin/
-COPY .devcontainer/allowed-domains.conf /usr/local/bin/
-COPY .devcontainer/inbound-ports.conf /usr/local/bin/
-COPY .devcontainer/entrypoint.sh /usr/local/bin/
+COPY .devbox/init-firewall.sh /usr/local/bin/
+COPY .devbox/allowed-domains.conf /usr/local/bin/
+COPY .devbox/inbound-ports.conf /usr/local/bin/
+COPY .devbox/entrypoint.sh /usr/local/bin/
 USER root
 RUN chmod +x /usr/local/bin/init-firewall.sh /usr/local/bin/entrypoint.sh
 
 # The container starts as root so the entrypoint can apply the firewall, then
 # drops to node via setpriv for the workload. node holds no sudo rights, so the
 # firewall cannot be altered from inside — root is reachable only from the host
-# (`docker exec -u 0`). Open an interactive node shell with devcontainer-shell.sh.
+# (`docker exec -u 0`). Open an interactive node shell with devbox-shell.sh.
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
