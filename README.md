@@ -14,7 +14,7 @@ runs the workload as `node`.
 
 ## Scripts
 
-All three scripts live in `.devbox` and run on the host.
+All scripts live in `.devbox` and run on the host.
 
 - `.devbox/restart.sh` reads `GH_TOKEN` from 1Password, then rebuilds and
   starts the container. It needs the `op` CLI. Claude Code installs its plugin
@@ -22,6 +22,8 @@ All three scripts live in `.devbox` and run on the host.
 - `.devbox/shell.sh` opens a shell as `node`.
 - `.devbox/firewall-restart.sh` applies the allow-list again without a
   rebuild.
+- `.devbox/start-rc.sh` runs `restart.sh`, then starts Claude Code in the
+  container with Remote Control. Arguments go to `claude remote-control`.
 
 ## Playwright
 
