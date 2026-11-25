@@ -69,8 +69,9 @@ RUN mkdir /commandhistory \
 # Set `DEVCONTAINER` environment variable to help with orientation
 ENV DEVCONTAINER=true
 
-# Create workspace and config directories and set permissions
-RUN mkdir -p /workspace /home/node/.claude && \
+# Create workspace and config directories and set permissions. node_modules is
+# here so the named volume that mounts over it takes node as its owner.
+RUN mkdir -p /workspace/node_modules /home/node/.claude && \
   chown -R node:node /workspace /home/node/.claude
 
 WORKDIR /workspace

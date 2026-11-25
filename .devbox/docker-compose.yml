@@ -15,6 +15,10 @@ services:
       - NET_RAW
     volumes:
       - ..:/workspace:delegated
+      # The devbox's own node_modules. It sits over the host's directory in the
+      # bind mount, so each side installs the native bindings for its own platform.
+      # Run `npm ci` inside the devbox after the lockfile changes.
+      - node-modules:/workspace/node_modules
       - claude-code-bashhistory:/commandhistory
       - claude-code-config:/home/node/.claude
     command: sleep infinity
@@ -28,3 +32,4 @@ services:
 volumes:
   claude-code-bashhistory:
   claude-code-config:
+  node-modules:
