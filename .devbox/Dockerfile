@@ -153,5 +153,5 @@ RUN chmod +x /usr/local/bin/init-firewall.sh /usr/local/bin/entrypoint.sh
 # The container starts as root so the entrypoint can apply the firewall, then
 # drops to node via setpriv for the workload. node holds no sudo rights, so the
 # firewall cannot be altered from inside — root is reachable only from the host
-# (`docker exec -u 0`). Open an interactive node shell with devbox-shell.sh.
+# (`docker exec -u 0`). Open an interactive node shell with .devbox/shell.sh.
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

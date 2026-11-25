@@ -6,8 +6,8 @@
 # root; `-u node` gives node's home, the ~/.claude + history volumes, and the
 # container's environment (unlike `su - node`, which strips it).
 #
-# Runs from .devbox so compose resolves its docker-compose.yml and .env
+# Runs from its own directory (.devbox) so compose resolves docker-compose.yml and .env
 # (COMPOSE_PROJECT_NAME) exactly as an in-directory invocation would.
 set -e
-cd "$(dirname "$0")/.devbox"
+cd "$(dirname "$0")"
 exec docker compose exec -u node app "${1:-zsh}"

@@ -10,17 +10,17 @@ runs the workload as `node`.
 3. Add the hosts of the project to `.devbox/allowed-domains.conf`.
 4. If you want to connect to a server running inside the devbox, add the port to `.devbox/inbound-ports.conf`.
 5. If the project needs a JDK other than 25, change `TEMURIN_VERSION` in the `Dockerfile`.
-6. Run `./devbox-restart.sh` on the host.
+6. Run `.devbox/restart.sh` on the host.
 
 ## Scripts
 
-All three scripts run on the host.
+All three scripts live in `.devbox` and run on the host.
 
-- `devbox-restart.sh` reads `GH_TOKEN` from 1Password, then rebuilds and
+- `.devbox/restart.sh` reads `GH_TOKEN` from 1Password, then rebuilds and
   starts the container. It needs the `op` CLI. Claude Code installs its plugin
   from GitHub with this token.
-- `devbox-shell.sh` opens a shell as `node`.
-- `devbox-firewall-restart.sh` applies the allow-list again without a
+- `.devbox/shell.sh` opens a shell as `node`.
+- `.devbox/firewall-restart.sh` applies the allow-list again without a
   rebuild.
 
 ## Playwright
