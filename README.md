@@ -33,6 +33,12 @@ All scripts live in `.devbox` and run on the host.
 - `.devbox/start-rc.sh` runs `restart.sh`, then starts Claude Code in the
   container with Remote Control. Arguments go to `claude remote-control`.
 
+## Update a project
+
+Run `.devbox/update.sh`. It pulls the template with `git subtree pull --squash`, which merges only
+what changed since the last pull and keeps the project's own edits. If the project and the template
+changed the same lines, git leaves conflict markers. Resolve them and commit.
+
 ## Playwright
 
 The build context is the repository root, so the image can read
